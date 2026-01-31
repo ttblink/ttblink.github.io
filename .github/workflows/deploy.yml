@@ -1,29 +1,60 @@
-name: Deploy Vite App to GitHub Pages
+name: Deploy VitePress site to Pages
 
-# 触发条件：当代码推送到 main 分支时
 on:
   push:
-    branches: [ master ]
+    branches: [main]  # 改成你的主分支名
+  workflow_dispatch:  # 允许手动触发
 
-# 设置权限，允许写入仓库内容（部署到 gh-pages 分支）
 permissions:
-  contents: write
+  contents: read
+  pages: write
+  id-token: write
+
+concurrency:
+  group: "pages"
+  cancel-in-progress: false
 
 jobs:
-  deploy:
+  build:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v3
-      - uses: actions/setup-node@v3
+      - name: Checkout
+        uses: actions/checkout@v4
         with:
-          node-version: 20
+          fetch-depth: 0  # 获取所有历史，用于生成页面
+  
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'  # 推荐使用 LTS 版本
           cache: 'pnpm'
+      
+      - name: Setup pnpm
+        uses: pnpm/action-setup@v4
+        with:
+          version: latest
+      
       - name: Install dependencies
         run: pnpm install
-      - name: Build
-        run: pnpm run build
-      - name: Deploy to GitHub Pages
-        uses: peaceiris/actions-gh-pages@v3
+      
+      - name: Build with VitePress
+        run: pnpm run build  # 确保 package.json 中有 build 脚本
+      
+      - name: Setup Pages
+        uses: actions/configure-pages@v4
+      
+      - name: Upload artifact
+        uses: actions/upload-pages-artifact@v3
         with:
-          github_token: 'ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAACAQCbdFCWQ1DwOI7a4usNqPvyTr2mq8M2FKhtBgejfpplJfX2+TsUfo7/Nube/zj+DUpfIyNeFtfuIC72WccIH8P1AyOsfqXR/xvyzSHpKohWe9O8qrmja4aPZx3ZE70gSpeeGROCu4pD7R9dpISw/25qhFNTAKH55MLXR1H1R2fPra/cGCNMPF4HA9alEK02TQsj0/WeSrti1DkCL3e7rKXrm3mWu8X/XW1drNOKK3rRmPAy8o2w0jDeSCjWq7kgQMXk4S2yqt8hkCxAbsAL+fiqsym9udVli8inQRGSlfzA7ipLZAa5aqmMCr3vbZWA8gGorrEnzRGGTsP8F9rPbwxPojuCuc1w8hhajoTk+IYEvgooMWEhzWqyO/p6CuGcaNEyWmjLbWmjyuE4rMYH58EU47rwpaBeNIwNjTbc2JV1I6uL0LdN7m1UCTvH+5r+a23bU+GHBCpw1gssyGkNg4yB4scL37xD1wen1N4dG6Rfk+qpDfegxiWnygLUDBR3wuodhIwE+pnCZMiv1IbZ720xQLkUljz03Tkz27K8MF/YfBYkNqCcOxmOUp6StRcvaurhp/C0uHCfkDp1gkdsAcar3LZMAAivjCZm379Eizh8fnL3u+NRZYuKe6SLAg/nG1pRxne9oXZBAex6ihyW6H50A+iyQkb+zMRgGovDYMtPsQ== shunhaitang@shunhaideMacBook-Pro.local'
-          publish_dir: ./dist
+          path: dist  # VitePress 默认输出目录
+
+  deploy:
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    runs-on: ubuntu-latest
+    needs: build
+    steps:
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v4
