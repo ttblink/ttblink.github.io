@@ -59,43 +59,51 @@ export default defineConfig({
                     text: '指南', 
                     items: [
                         { text: '项目概述', link: '/overview/overview' },
-                        { text: '快速开始', link: '/quickstart/start' },
+                        // { text: '快速开始', link: '/quickstart/start' },
                     ] 
                 },
-                { 
-                    text: '开发指南', 
-                    items: [
-                        { text: '前端开发', link: '/development/frontend' },
-                        { text: '后端开发', link: '/development/backend' },
-                        { text: '移动端开发', link: '/development/miniprogram' },
-                        { text: '开发规范', link: '/development/guidelines' }
-                    ] 
+                {
+                    text:"运维管理平台",
+                    items:[
+                        {text:"快速开始",link:"/ttblinkAdmin/start"},
+                        {text:"交换机管理模块",link:"/ttblinkAdmin/switch"},
+                        {text:"交换机配置备份模块",link:"/ttblinkAdmin/backup"}
+                    ]
                 },
-                { 
-                    text: '部署与API', 
-                    items: [
-                        { text: '部署指南', link: '/quickstart/deployment' },
-                        { text: 'API文档说明', link: '/quickstart/api-docs' },
-                        { text: '后端API', link: 'https://service.fastapiadmin.com/api/v1/docs', target: '_blank' }
-                    ] 
-                },
-                { 
-                    text: '资源', 
-                    items: [
-                        { text: 'GitHub', link: 'https://github.com/fastapiadmin', target: '_blank' },
-                        { text: 'Gitee', link: 'https://gitee.com/fastapiadmin', target: '_blank' },
-                        { text: '在线演示', link: 'https://service.fastapiadmin.com/web', target: '_blank' },
-                        { text: '移动端演示', link: 'https://service.fastapiadmin.com/app', target: '_blank' },
-                        { 
-                            text: '版本', 
-                            items: [
-                                { text: 'master', link: 'https://github.com/fastapiadmin/FastapiAdmin', target: '_blank' },
-                                { text: 'V2.0.0', link: 'https://github.com/fastapiadmin/FastapiAdmin/tree/v2.0.0', target: '_blank' },
-                                { text: 'V1.0.0', link: 'https://github.com/fastapiadmin/FastapiAdmin/tree/v1.0.0', target: '_blank' }
-                            ]
-                        }
-                    ] 
-                },
+                // { 
+                //     text: '开发指南', 
+                //     items: [
+                //         { text: '前端开发', link: '/development/frontend' },
+                //         { text: '后端开发', link: '/development/backend' },
+                //         { text: '移动端开发', link: '/development/miniprogram' },
+                //         { text: '开发规范', link: '/development/guidelines' }
+                //     ] 
+                // },
+                // { 
+                //     text: '部署与API', 
+                //     items: [
+                //         { text: '部署指南', link: '/quickstart/deployment' },
+                //         { text: 'API文档说明', link: '/quickstart/api-docs' },
+                //         { text: '后端API', link: 'https://service.fastapiadmin.com/api/v1/docs', target: '_blank' }
+                //     ] 
+                // },
+                // { 
+                //     text: '资源', 
+                //     items: [
+                //         { text: 'GitHub', link: 'https://github.com/fastapiadmin', target: '_blank' },
+                //         { text: 'Gitee', link: 'https://gitee.com/fastapiadmin', target: '_blank' },
+                //         { text: '在线演示', link: 'https://service.fastapiadmin.com/web', target: '_blank' },
+                //         { text: '移动端演示', link: 'https://service.fastapiadmin.com/app', target: '_blank' },
+                //         { 
+                //             text: '版本', 
+                //             items: [
+                //                 { text: 'master', link: 'https://github.com/fastapiadmin/FastapiAdmin', target: '_blank' },
+                //                 { text: 'V2.0.0', link: 'https://github.com/fastapiadmin/FastapiAdmin/tree/v2.0.0', target: '_blank' },
+                //                 { text: 'V1.0.0', link: 'https://github.com/fastapiadmin/FastapiAdmin/tree/v1.0.0', target: '_blank' }
+                //             ]
+                //         }
+                //     ] 
+                // },
                 { text: '关于我们', link: '/overview/about' },
             ],
         sidebar: [
@@ -104,30 +112,39 @@ export default defineConfig({
                 collapsed: false,
                 items: [
                     { text: '项目概述', link: '/overview/overview' },
-                    { text: '快速开始', link: '/quickstart/start' },
+                    // { text: '快速开始', link: '/quickstart/start' },
                 ]
             },
             {
-                text: '开发指南',
+                text: '运维管理平台',
                 collapsed: false,
                 items: [
-                    { text: '前端开发指南', link: '/development/frontend' },
-                    { text: '后端开发指南', link: '/development/backend' },
-                    { text: '移动端开发指南', link: '/development/miniprogram' },
-                    { text: '开发规范', link: '/development/guidelines' }
+                    { text: '快速开始', link: '/ttblinkAdmin/start' }, 
+                    {text:"交换机管理模块",link:"/ttblinkAdmin/switch"},
+                    {text:"交换机配置备份模块",link:"/ttblinkAdmin/backup"}
                 ]
             },
-            {
-                text: '部署与API',
-                collapsed: false,
-                items: [
-                    { text: '部署指南', link: '/quickstart/deployment' },
-                    { text: 'API文档说明', link: '/quickstart/api-docs' },
-                    { text: '后端API', link: 'https://service.fastapiadmin.com/api/v1/docs', target: '_blank' },
-                    { text: '前端API调用', link: '/development/frontend#api-调用' },
-                    { text: '移动端API调用', link: '/development/miniprogram#api-调用' }
-                ]
-            },
+            // {
+            //     text: '开发指南',
+            //     collapsed: false,
+            //     items: [
+            //         { text: '前端开发指南', link: '/development/frontend' },
+            //         { text: '后端开发指南', link: '/development/backend' },
+            //         { text: '移动端开发指南', link: '/development/miniprogram' },
+            //         { text: '开发规范', link: '/development/guidelines' }
+            //     ]
+            // },
+            // {
+            //     text: '部署与API',
+            //     collapsed: false,
+            //     items: [
+            //         { text: '部署指南', link: '/quickstart/deployment' },
+            //         { text: 'API文档说明', link: '/quickstart/api-docs' },
+            //         { text: '后端API', link: 'https://service.fastapiadmin.com/api/v1/docs', target: '_blank' },
+            //         { text: '前端API调用', link: '/development/frontend#api-调用' },
+            //         { text: '移动端API调用', link: '/development/miniprogram#api-调用' }
+            //     ]
+            // },
             {
                 text: '关于',
                 items: [
@@ -136,13 +153,13 @@ export default defineConfig({
             }
         ],
         socialLinks: [
-            { icon: 'github', link: 'https://github.com/fastapiadmin/FastapiAdmin' },
-            { icon: 'gitee', link: 'https://gitee.com/fastapiadmin/FastapiAdmin' },
-            { icon: 'gitcode', link: 'https://gitcode.com/qq_36002987/FastapiAdmin' }
+            { icon: 'github', link: '' },
+            { icon: 'gitee', link: '' },
+            { icon: 'gitcode', link: '' }
         ],
         footer: {
-            message: '<a href="https://github.com/fastapiadmin/FastapiAdmin/blob/master/LICENSE" target="_blank">MIT License</a>',
-            copyright: 'Copyright © 2025-2026 service.fastapiadmin.com 版权所有 |隐私 |条款 陕ICP备2025069493号-1'
+            message: '<a href="" target="_blank">MIT License</a>',
+            copyright: 'Copyright © 2026- ttblink.cn 版权所有 |隐私 |条款'
         },
         search: {
             provider: 'local',
