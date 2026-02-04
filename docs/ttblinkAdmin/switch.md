@@ -20,6 +20,35 @@ title: 交换机管理模块
 | 服务类型 | 办公、视频、生产等 | 非必填       |
 | 安装位置 | 交换机安装位置 | 非必填       |
 
+```sql
+CREATE TABLE `switch_info` (
+  `ip` varchar(64) DEFAULT NULL COMMENT 'IP',
+  `name` varchar(64) DEFAULT NULL COMMENT '名称',
+  `brand` varchar(64) DEFAULT NULL COMMENT '品牌',
+  `model` varchar(64) DEFAULT NULL COMMENT '型号',
+  `manageWay` varchar(64) DEFAULT NULL COMMENT '管理方式',
+  `username` varchar(64) DEFAULT NULL COMMENT '用户名',
+  `password` varchar(64) DEFAULT NULL COMMENT '密码',
+  `enablePassword` varchar(64) DEFAULT NULL COMMENT 'enable密码',
+  `serviceType` varchar(64) DEFAULT NULL COMMENT '服务类型',
+  `location` varchar(64) DEFAULT NULL COMMENT '安装位置',
+  `id` int NOT NULL AUTO_INCREMENT COMMENT '主键ID',
+  `uuid` varchar(64) NOT NULL COMMENT 'UUID全局唯一标识',
+  `status` varchar(10) NOT NULL COMMENT '是否启用(0:启用 1:禁用)',
+  `description` text COMMENT '备注/描述',
+  `created_time` datetime NOT NULL COMMENT '创建时间',
+  `updated_time` datetime NOT NULL COMMENT '更新时间',
+  `created_id` int DEFAULT NULL COMMENT '创建人ID',
+  `updated_id` int DEFAULT NULL COMMENT '更新人ID',
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `uuid` (`uuid`),
+  KEY `ix_switch_info_created_id` (`created_id`),
+  KEY `ix_switch_info_updated_id` (`updated_id`),
+  CONSTRAINT `switch_info_ibfk_1` FOREIGN KEY (`created_id`) REFERENCES `sys_user` (`id`) ON DELETE SET NULL ON UPDATE CASCADE,
+  CONSTRAINT `switch_info_ibfk_2` FOREIGN KEY (`updated_id`) REFERENCES `sys_user` (`id`) ON DELETE SET NULL ON UPDATE CASCADE
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci COMMENT='交换机数据表'
+```
+
 ![交换机信息模块](/switch/交换机信息模块.png)
 
 ## 交换机配置备份
